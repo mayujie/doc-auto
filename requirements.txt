@@ -1,0 +1,9 @@
+fpdf2
+PyPDF2
+reportlab
+pillow
+matplotlib
+PyMuPDF
+numpy
+tqdm
+pandas
