@@ -38,7 +38,7 @@ def make_test_proof_back_page(
     img_size = img.shape[:2]
     registration_proof_info = RegistrationProofInfo(
         section_D=SectionInfo(
-            value=f"D1. {car_info.maker}\nD2. ...\nD3. {car_info.model}",
+            value=car_info.get_section_d(),
             position=(img_size[1] // 4, img_size[0] // 6)
         ),
         section_E=SectionInfo(
@@ -83,8 +83,10 @@ def make_test_proof_back_page(
     else:
         save_dir = 'results'
         os.makedirs(save_dir, exist_ok=True)
-        output_image_path = os.path.join(save_dir,
-                                         f'backpage_{car_info.maker}_{car_info.model}_{car_info.vin_number}_{car_info.plate_number}.png')
+        output_image_path = os.path.join(
+            save_dir,
+            f'backpage_{car_info.maker}_{car_info.model}_{car_info.vin_number}_{car_info.plate_number}.png'
+        )
         cv2.imwrite(output_image_path, img)
 
 

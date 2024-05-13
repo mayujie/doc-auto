@@ -11,6 +11,10 @@ class CarInfo:
     end_date: str
     plate_number: Optional[str] = None
 
+    def get_section_d(self):
+        section_d = f"D1. {self.maker}\nD2. ...\nD3. {self.model}"
+        return section_d
+
 
 @dataclass
 class SectionInfo:

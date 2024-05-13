@@ -1,9 +1,10 @@
 fpdf2
 PyPDF2
 reportlab
+PyMuPDF
 pillow
 matplotlib
-PyMuPDF
 numpy
 tqdm
 pandas
+opencv-python
