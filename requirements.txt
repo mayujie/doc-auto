@@ -8,3 +8,5 @@ numpy
 tqdm
 pandas
 opencv-python
+beautifulsoup4
+openpyxl
