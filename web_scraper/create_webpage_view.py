@@ -12,12 +12,24 @@ base_html_template = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{product_title}</title>
+    <style>
+        .pagination {{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }}
+        .pagination a {{
+            margin: 0 10px;
+            text-decoration: none;
+        }}
+    </style>    
 </head>
 <body>
-    <div>
+    <div class="pagination">
         <a href="{prev_link}">Previous</a> || <a href="{next_link}">Next</a>
     </div>
-    <h1>No.{item_order}</h1>
+    <h1 class="pagination">No.{item_order}</h1>
     <h2>{product_title}</h2>
     <p><strong>Price:</strong> {product_price}</p>
     <p><strong>Rating:</strong> {product_rate}</p>
@@ -100,8 +112,11 @@ if __name__ == '__main__':
     # Load the Excel file
     ROOT_DIR = "/home/yujiema/Videos/副业/allegro/GREENWORKS_data"
     file_path = os.path.join(ROOT_DIR, '格力博(GREENWORKS)户外工具_数据.xlsx')
+
     # Directory where HTML files will be saved
-    output_dir = os.path.join(ROOT_DIR, 'webpages_ALL_products')
+    # output_dir = os.path.join(ROOT_DIR, 'webpages_ALL_products')
+    output_dir = os.path.join(ROOT_DIR, 'webpages_TOP_products')
+
     os.makedirs(output_dir, exist_ok=True)
 
     df = pd.read_excel(file_path)
@@ -110,15 +125,15 @@ if __name__ == '__main__':
     print(df.head())
     print(df.columns)
 
-    # # Filter TOP products
-    # middle_columns = df.columns[3:7]
-    # df_sorted = df.sort_values(by=middle_columns.tolist(), ascending=[False] * len(middle_columns))
-    # df_sorted = df_sorted.dropna(subset=middle_columns)
-    # df_sorted = df_sorted.sort_values(by='item_order', ascending=True)
-    # print(df_sorted)
-    # data_frame = df_sorted
+    # Filter TOP products
+    middle_columns = df.columns[3:7]
+    df_sorted = df.sort_values(by=middle_columns.tolist(), ascending=[False] * len(middle_columns))
+    df_sorted = df_sorted.dropna(subset=middle_columns)
+    df_sorted = df_sorted.sort_values(by='item_order', ascending=True)
+    print(df_sorted)
+    data_frame = df_sorted
 
-    data_frame = df
+    # data_frame = df
     # Iterate over DataFrame rows and generate HTML pages
     for idx in tqdm(range(len(data_frame))):
         current_row = data_frame.iloc[idx]
