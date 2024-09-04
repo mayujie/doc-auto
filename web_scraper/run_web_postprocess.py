@@ -23,7 +23,7 @@ def download_images(df: pd.DataFrame, save_images_dir: str = "images"):
         if not row.images_url:  # If the list is empty, do nothing
             continue
 
-        save_item_image_dir = os.path.join(save_images_dir, f'{row.Index}__{row.product_title}')
+        save_item_image_dir = os.path.join(save_images_dir, f'{row.Index + 1}__{row.product_title}')
         if not os.path.exists(save_item_image_dir):
             os.makedirs(save_item_image_dir)
 
